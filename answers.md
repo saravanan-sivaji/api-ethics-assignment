@@ -29,9 +29,10 @@ for record in data["results"]:
     cleaned_records.append(record)
 
 save_to_database(cleaned_records)
-
+```
 ### Violation 2: Lack of Rate Limiting (TOS Violation)
 ***Problem:** Making 100 consecutive requests as fast as possible on a "free tier" key can overwhelm the API and violate Terms of Service.
+
 ```python
 import time
 
@@ -44,3 +45,4 @@ for page in range(1, 101):
     
     # Respect the API's rate limits by pausing for 1 second
     time.sleep(1) 
+```
