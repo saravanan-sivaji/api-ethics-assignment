@@ -19,6 +19,7 @@
 
 **Corrected Code:**
 ```python
+
 cleaned_records = []
 for record in data["results"]:
     # Remove direct identifiers immediately
@@ -30,11 +31,18 @@ for record in data["results"]:
 
 save_to_database(cleaned_records)
 ```
-### Violation 2: Lack of Rate Limiting (TOS Violation)
-***Problem:** Making 100 consecutive requests as fast as possible on a "free tier" key can overwhelm the API and violate Terms of Service.
 
+### Violation 2: Lack of Rate Limiting (TOS Violation)
+**Problem:** Making 100 consecutive requests as fast as possible on a "free tier" key can overwhelm the API and violate Terms of Service.
+
+**Corrected Code:**
 ```python
+
 import time
+import requests
+
+API_URL = "https://healthstats-api.example.com/records"
+API_KEY = "free_tier_key_abc123"
 
 for page in range(1, 101):
     response = requests.get(API_URL, params={"page": page, "key": API_KEY})
